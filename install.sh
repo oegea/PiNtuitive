@@ -19,7 +19,4 @@ echo "Installing necessary dependencies for PiNtuitive..."
 sudo apt-get update
 sudo apt-get install -y wmctrl python3-tk
 sudo apt-get install -y x11-utils
-# Not fully working, to replace with another solution
-sudo apt-get install -y matchbox-keyboard
-# Probably not required
-sudo apt-get install -y at-spi2-core
+pip install pyautogui
