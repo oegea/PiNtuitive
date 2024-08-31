@@ -1,5 +1,10 @@
 import tkinter as tk
 import os
+import os
+
+# Where is stored the PiNtuitiveUI executable
+app_image_path = os.path.abspath("./ui/dist/PiNtuitiveUI.AppImage")
+
 from keyboard import Keyboard
 
 class AutoHideBar:
@@ -37,6 +42,8 @@ class AutoHideBar:
 
         # Start checking mouse position
         self.root.after(100, self.check_mouse_position)
+
+        self.execute_ui()
         
     def reset_timer(self):
         if self.timer:
@@ -80,9 +87,7 @@ class AutoHideBar:
             if str(current_pid) not in window:
                 window_id = window.split()[0]
                 os.system(f'wmctrl -ic {window_id}')
-        # Now execute ./ui/dist/PiNtuitiveUI.AppImage if it exists
-        if os.path.exists("./ui/dist/PiNtuitiveUI.AppImage"):
-            os.system("./ui/dist/PiNtuitiveUI.AppImage")
+        self.execute_ui()
     
     def toggle_keyboard(self):
         if self.keyboard.keyboard_open:
@@ -90,6 +95,16 @@ class AutoHideBar:
             self.reset_timer() 
         else:
             self.keyboard.open_keyboard()
+
+    def execute_ui(self):
+        if os.path.exists(app_image_path):
+            try:
+                process_check = subprocess.run(['pgrep', '-f', 'PiNtuitiveUI.AppImage'], stdout=subprocess.PIPE)
+                if not process_check.stdout:
+                    subprocess.Popen([app_image_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            except Exception as e:
+                print(f"Error al intentar ejecutar la aplicación: {e}")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
