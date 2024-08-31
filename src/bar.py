@@ -1,6 +1,6 @@
 import tkinter as tk
 import os
-import os
+import subprocess
 
 # Where is stored the PiNtuitiveUI executable
 app_image_path = os.path.abspath("./ui/dist/PiNtuitiveUI.AppImage")
