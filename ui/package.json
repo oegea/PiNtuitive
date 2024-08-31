@@ -11,16 +11,22 @@
         "electron-builder": "^24.13.3"
     },
     "build": {
-    "appId": "pi.ntuitive.ui",
-    "productName": "MiAppElectron",
-    "linux": {
-      "target": ["AppImage", "deb"],
-      "category": "Utility"
+        "appId": "pi.ntuitive.ui",
+        "productName": "MiAppElectron",
+        "linux": {
+        "target": ["AppImage", "deb"],
+        "category": "Utility",
+        "maintainer": "Oriol Egea <egea@oriol.im>"
+        },
+        "files": [
+            "public/**/*",
+            "src/**/*",
+            "package.json"
+        ]
     },
-    "files": [
-      "public/**/*",
-      "src/**/*",
-      "package.json"
-    ]
-  }
+    "homepage": "https://github.com/oegea/PiNtuitive",
+    "author": {
+        "name": "Oriol Egea",
+        "email": "egea@oriol.im"
+    }
 }
