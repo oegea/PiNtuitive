@@ -9,6 +9,12 @@ You might find yourself back in a time when devices were designed so that users 
 
 ## PiNtuitive: Freedom at Your Fingertips
 
+<center>
+    <a target = "_blank" href="./images/terminal.jpg"><img src="./images/terminal.jpg" alt="PiNtuitive" width="250"/></a>
+    <a target = "_blank" href="./images/chromium.jpg"><img src="./images/chromium.jpg" alt="PiNtuitive" width="250"/></a>
+    <a target = "_blank" href="./images/symbols.jpg"><img src="./images/symbols.jpg" alt="PiNtuitive" width="250"/></a>
+</center>
+
 PiNtuitive is an application designed with a clear vision and purpose: to provide users with a simple, intuitive, and touchscreen-friendly interface for their RaspberryPi. It also offers a development environment for creating widgets and simple applications, allowing users to customize their RaspberryPi to their liking.
 
 1. **Touchscreen Adaptability for RaspberryPi:**  
