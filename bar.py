@@ -1,6 +1,6 @@
 import tkinter as tk
 import os
-import pyautogui  # Import pyautogui to send keyboard events to the operating system
+from keyboard import Keyboard
 
 class AutoHideBar:
     def __init__(self, root):
@@ -8,7 +8,7 @@ class AutoHideBar:
         self.hidden = False
         self.timer = None
         self.bar_height = 50 
-        self.keyboard_open = False
+        self.keyboard = Keyboard(root)  # Create a keyboard instance
         
         # Window configuration
         self.root.overrideredirect(True)
@@ -42,12 +42,12 @@ class AutoHideBar:
         if self.timer:
             self.root.after_cancel(self.timer)
         # Reset the timer only if the keyboard is not open
-        if not self.keyboard_open:
+        if not self.keyboard.keyboard_open:
             self.timer = self.root.after(15000, self.hide_bar)  # Hide the bar after 15 seconds of inactivity
         print("Timer reset")
 
     def hide_bar(self):
-        if not self.keyboard_open:  # Only hide the bar if the keyboard is not open
+        if not self.keyboard.keyboard_open:  # Only hide the bar if the keyboard is not open
             print("Hiding bar")
             self.hidden = True
             self.root.withdraw()  # Hide the window
@@ -72,6 +72,7 @@ class AutoHideBar:
         self.root.after(100, self.check_mouse_position)
 
     def close_all_windows(self):
+        self.keyboard.close_keyboard()
         # Close all windows but the bar
         current_pid = os.getpid()
         windows = os.popen('wmctrl -lp').readlines()
@@ -81,52 +82,11 @@ class AutoHideBar:
                 os.system(f'wmctrl -ic {window_id}')
     
     def toggle_keyboard(self):
-        if self.keyboard_open:
-            self.keyboard_window.destroy()
-            self.keyboard_open = False
+        if self.keyboard.keyboard_open:
+            self.keyboard.close_keyboard()
             self.reset_timer()  # Reset the timer when the keyboard is closed
         else:
-            self.open_keyboard()
-
-    def open_keyboard(self):
-        self.keyboard_open = True
-        self.keyboard_window = tk.Toplevel(self.root)
-        self.keyboard_window.title("Keyboard")
-        self.keyboard_window.geometry(f"{self.root.winfo_screenwidth()}x250+0+{self.root.winfo_screenheight()-300}")
-        self.keyboard_window.overrideredirect(True)
-
-        self.keyboard_frame = tk.Frame(self.keyboard_window, bg='black')
-        self.keyboard_frame.pack(expand=True, fill='both')
-
-        keys = [
-            ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-            ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ':'],
-            ['z', 'x', 'c', 'v', 'b', 'n', 'm', '.', '/', 'Delete'],
-            ['Space', 'Enter']
-        ]
-
-        for row in keys:
-            key_frame = tk.Frame(self.keyboard_frame, bg='black')
-            key_frame.pack(side='top', pady=5)
-            for key in row:
-                if key == "Space":
-                    btn = tk.Button(key_frame, text=key, command=lambda k=' ': self.press_key(k), width=20, height=2, bg='white')
-                elif key == "Delete":
-                    btn = tk.Button(key_frame, text=key, command=self.backspace, width=10, height=2, bg='white')
-                elif key == "Enter":
-                    btn = tk.Button(key_frame, text=key, command=self.enter_key, width=10, height=2, bg='white')
-                else:
-                    btn = tk.Button(key_frame, text=key, command=lambda k=key: self.press_key(k), width=5, height=2, bg='white')
-                btn.pack(side='left', padx=5)
-        
-    def press_key(self, key):
-        pyautogui.write(key)  # Simulate key press in the operating system
-
-    def backspace(self):
-        pyautogui.press('backspace')  # Simulate backspace key
-
-    def enter_key(self):
-        pyautogui.press('enter')  # Simulate Enter key
+            self.keyboard.open_keyboard()
 
 if __name__ == "__main__":
     root = tk.Tk()
