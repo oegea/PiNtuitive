@@ -1,0 +1,26 @@
+{
+    "name": "pintuitive-ui",
+    "version": "1.0.0",
+    "main": "src/main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "devDependencies": {
+        "electron": "^32.0.1",
+        "electron-builder": "^24.13.3"
+    },
+    "build": {
+    "appId": "pi.ntuitive.ui",
+    "productName": "MiAppElectron",
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Utility"
+    },
+    "files": [
+      "public/**/*",
+      "src/**/*",
+      "package.json"
+    ]
+  }
+}

@@ -84,7 +84,7 @@ class AutoHideBar:
     def toggle_keyboard(self):
         if self.keyboard.keyboard_open:
             self.keyboard.close_keyboard()
-            self.reset_timer()  # Reset the timer when the keyboard is closed
+            self.reset_timer() 
         else:
             self.keyboard.open_keyboard()
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiNtuitive UI</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Until development is more advanced, we will use the CDN versions of React and ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- And directly use Babel to transpile our JSX code -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function App() {
+            const closeApp = () => {
+                window.electronAPI.closeApp();
+            };
+
+            return (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}>
+                    <h1>Hello PiNtuitive</h1>
+                    <button onClick={closeApp} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px' }}>Close PiNtuitive App</button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -20,3 +20,10 @@ sudo apt-get update
 sudo apt-get install -y wmctrl python3-tk
 sudo apt-get install -y x11-utils
 pip install pyautogui
+
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+cd ui
+npm install
+npm run build
