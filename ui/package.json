@@ -13,10 +13,11 @@
     "build": {
         "appId": "pi.ntuitive.ui",
         "productName": "MiAppElectron",
+        "artifactName": "PiNtuitiveUI.${ext}",
         "linux": {
-        "target": ["AppImage", "deb"],
-        "category": "Utility",
-        "maintainer": "Oriol Egea <egea@oriol.im>"
+            "target": ["AppImage"],
+            "category": "Utility",
+            "maintainer": "Oriol Egea <egea@oriol.im>"
         },
         "files": [
             "public/**/*",
