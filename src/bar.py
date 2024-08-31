@@ -80,6 +80,9 @@ class AutoHideBar:
             if str(current_pid) not in window:
                 window_id = window.split()[0]
                 os.system(f'wmctrl -ic {window_id}')
+        # Now execute ../ui/dist/PiNtuitiveUI.AppImage if it exists
+        if os.path.exists("../ui/dist/PiNtuitiveUI.AppImage"):
+            os.system("../ui/dist/PiNtuitiveUI.AppImage")
     
     def toggle_keyboard(self):
         if self.keyboard.keyboard_open:
