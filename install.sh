@@ -21,6 +21,9 @@ sudo apt-get install -y wmctrl python3-tk
 sudo apt-get install -y x11-utils
 pip install pyautogui
 
+# Emojis pls
+sudo apt-get install -y fonts-noto-color-emoji
+
 # Install Node.js
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
