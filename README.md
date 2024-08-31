@@ -1,5 +1,9 @@
 # PiNtuitive
 
+<center>
+    <img src="./images/logo.png" alt="PiNtuitive" width="200"/>
+</center>
+
 **What if...**  
 What if you could decide what software your assistant or tablet runs?  
 What if your assistant or tablet didn't become obsolete just because its manufacturer decided to stop providing updates one or two years after its release?
