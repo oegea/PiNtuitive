@@ -12,6 +12,8 @@ function createWindow() {
         },
     });
 
+    // win.webContents.openDevTools();
+
     win.loadFile('public/index.html');
 }
 
@@ -31,4 +33,9 @@ app.on('activate', () => {
 
 ipcMain.on('close-app', () => {
     app.quit();
+});
+
+ipcMain.on('start-process', (event, process) => {
+    const { spawn } = require('child_process');
+    spawn(process);
 });

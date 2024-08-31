@@ -12,24 +12,32 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
+    <!-- Import tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <!-- And directly use Babel to transpile our JSX code -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-        function App() {
-            const closeApp = () => {
-                window.electronAPI.closeApp();
-            };
+        const closeApp = () => {
+            window.electronAPI.closeApp();
+        };
 
-            return (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}>
-                    <h1>Hello PiNtuitive</h1>
-                    <button onClick={closeApp} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px' }}>Close PiNtuitive App</button>
-                </div>
-            );
-        }
+        const startProcess = (processName) => {
+            window.electronAPI.startProcess(processName);
+        };
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+
+        const { useState, useEffect } = React;
+        fetch('./board.js')
+            .then(response => response.text())
+            .then(text => {
+                const transformedCode = Babel.transform(text, { presets: ['react'] }).code;
+                eval(transformedCode);
+                const Component = window.export;
+                ReactDOM.render(<Component />, document.getElementById('root'));
+            });
+        
     </script>
 </body>
 </html>
