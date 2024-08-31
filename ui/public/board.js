@@ -40,7 +40,7 @@
         const bottomApps = [
             { name: 'Desktop', icon: '🖥️', color: 'from-gray-400 to-gray-600', onClick: () => closeApp() },
             { name: 'Terminal', icon: '>_', color: 'from-gray-400 to-gray-600', onClick: () => startProcess('lxterminal') },
-            { name: 'Browser', icon: '🌐', color: 'from-blue-300 to-blue-500', onClick: () => startProcess('xdg-open https://github.com/oegea/PiNtuitive/blob/main/README.md') },
+            { name: 'Browser', icon: '🌐', color: 'from-blue-300 to-blue-500', onClick: () => startProcess('chromium-browser') },
         ];
       
         const handleClick = (appName) => {
